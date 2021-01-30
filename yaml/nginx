@@ -15,3 +15,21 @@ spec:
       containers:
       - name: my-nginx
         image: nginx
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: my-nginx
+  type: NodePort
